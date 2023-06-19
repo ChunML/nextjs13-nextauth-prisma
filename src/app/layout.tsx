@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import './globals.css';
 import { Poppins } from 'next/font/google';
+import AuthProvider from '@/auth/providers';
 
 const poppins = Poppins({ weight: ['400', '700'], subsets: ['latin'] });
 
@@ -16,7 +17,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={poppins.className}>{children}</body>
+      <body className={poppins.className}>
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+      </body>
     </html>
   );
 }
